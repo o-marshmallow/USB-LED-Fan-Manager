@@ -8,8 +8,11 @@
 #include <fcntl.h>
 #include "io.h"
 
+void main_loop(hid_device*);
+
 int main(int argc, char* argv[])
 {
+  
   int res;
   hid_device *handle;
 
@@ -22,6 +25,9 @@ int main(int argc, char* argv[])
     return 1;
   }
 
+  main_loop(handle);
+  return 0;
+  
   uint8_t rom[2058];
   res = read_rom_from_usb(handle, rom, 2058, NULL);
   if(res < 0)
